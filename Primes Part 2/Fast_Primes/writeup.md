@@ -1,7 +1,9 @@
 # Fast Primes - Writeup
 
 ## 1. Tóm tắt bài toán
-Challenge này cung cấp cho mình 3 file là:
+
+Ta được:
+
 - `fast_primes.py`: code sinh RSA key
 - `key.pem`: public key
 - `ciphertext.txt`: ciphertext OAEP
@@ -145,41 +147,5 @@ và decrypt OAEP:
 plaintext = PKCS1_OAEP.new(key).decrypt(ciphertext)
 ```
 
-
 ## 7. Flag
-
-Flag thu được là:
-
-```text
-crypto{p00R_3570n14}
-```
-
-
-## 8. Nội dung `solve.py`
-
-File `solve.py` trong thư mục này:
-
-- đọc `key.pem`
-- đọc `ciphertext.txt`
-- dựng lại private key từ `p, q`
-- giải mã ciphertext
-- in ra `p`, `q` và flag
-
-Chạy bằng:
-
-```bash
-python3 solve.py
-```
-
-
-## 9. Kết luận
-
-Sai lầm của challenge không nằm ở OAEP hay ở tham số `e = 65537`, mà nằm ở việc sinh prime có cấu trúc quá mạnh:
-
-```text
-p = kM + 65537^a mod M
-```
-
-Prime “nhanh” nhưng không “ngẫu nhiên”.
-
-Khi prime bị bó vào một subgroup residue modulo một primorial lớn, ta vô tình tạo ra đúng kiểu điều kiện để ROCA-like attacks hoạt động. Một khi factor được `n`, toàn bộ RSA sụp đổ ngay lập tức.
+Flag thu được là: `crypto{p00R_3570n14}`

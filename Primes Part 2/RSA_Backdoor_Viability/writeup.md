@@ -1,6 +1,5 @@
 # RSA Backdoor Viability - Writeup
 
-
 ## 1. Challenge cung cấp
 Challenge cung cấp 1 file complex_primes và 1 file output.txt
 ```python 
